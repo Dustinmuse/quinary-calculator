@@ -5,7 +5,7 @@ class QuinaryCalculator:
         self.operation = None
         self.quinaryDisplay = True
     
-    def decimal_to_quinary(n: int) -> str:
+    def decimal_to_quinary(self, n: int) -> str:
         if n == 0:
             return "0"
         s = ""
@@ -14,7 +14,7 @@ class QuinaryCalculator:
             n //= 5
         return s
     
-    def quinary_to_decimal(q: str) -> int:
+    def quinary_to_decimal(self, q: str) -> int:
         dec = 0
         for dig in q:
             if dig not in "01234":
