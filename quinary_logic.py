@@ -18,11 +18,6 @@ class QuinaryCalculator:
         dec = 0
         for dig in q:
             if dig not in "01234":
-                raise ValueError(f"Invalid digit '{digit}' in quinary number")
+                raise ValueError(f"Invalid digit '{dig}' in quinary number")
             dec = dec * 5 + int(dig)
-        return decimal
-        
-
-
-
-    
+        return dec
