@@ -1,14 +1,14 @@
-from advanced_operations import AdvancedOperations
+from advanced_operations import square, square_root
 import unittest
 
-operator = AdvancedOperations()
+operator_advanced = AdvancedOperations()
 
 class testOperations(unittest.TestCase):
     def testSquare(self):
-        self.assertTrue(operator.sqaure(2), 4)
+        self.assertTrue(operator_advanced.sqaure(2), 4)
 
     def testSquareRoot(self):
-        self.assertTrue(operator.square_root(25), 5)
+        self.assertTrue(operator_advanced.square_root(25), 5)
 
 
 if __name__ == '__main__':
