@@ -14,4 +14,4 @@ def square_root(a) -> str:
     """
     :return: The square root of the inputed number
     """
-    return calc.decimal_to_quinary(math.sqrt((calc.quinary_to_decimal(a))))
+    return calc.decimal_to_quinary(int(math.sqrt((calc.quinary_to_decimal(a)))))
