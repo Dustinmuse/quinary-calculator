@@ -58,9 +58,20 @@ def click_mul():
     root.setvar("operation", "*")
 
 
+def click_sqr():
+    print("Square operation selected!")
+    root.setvar("operation", "^2")
+
+
+def click_sqr_root():
+    print("Square root operation selected!")
+    root.setvar("operation", "√")
+
+
 def click_eql():
     x1 = root.getvar("first_press")
     x2 = root.getvar("second_press")
+    x1, x2 = str(x1), str(x2)
     print(x1, x2)
     val = "Error"
     if root.getvar("operation") == "+":
@@ -71,7 +82,12 @@ def click_eql():
         val = bo.multiply(x1, x2)
     elif root.getvar("operation") == "/":
         val = bo.divide(x1, x2)
-    print(val)
+    elif root.getvar("operation") == "^2":
+        val = bo.square(x1)
+    elif root.getvar("operation") == "√":
+        val = bo.square_root(x1)
+    x1 = root.setvar("first_press", 0)
+    x2 = root.setvar("second_press", 0)
 
 
 display = tk.Label(root, text="Click a number to start mathing")
@@ -105,5 +121,11 @@ mul_btn = tk.Button(root, text="*", command=click_mul, width=10, height=3)
 mul_btn.grid(row=2, column=4, padx=5, pady=5)
 
 eql_btn = tk.Button(root, text="=", command=click_eql, width=10, height=3)
-eql_btn.grid(row=2, column=5, padx=5, pady=5)
+eql_btn.grid(row=2, column=3, padx=5, pady=5)
+
+sqr_btn = tk.Button(root, text="^2", command=click_sqr, width=10, height=3)
+sqr_btn.grid(row=3, column=3, padx=5, pady=5)
+
+sqr_root_btn = tk.Button(root, text="√", command=click_sqr_root, width=10, height=3)
+sqr_root_btn.grid(row=3, column=4, padx=5, pady=5)
 root.mainloop()
