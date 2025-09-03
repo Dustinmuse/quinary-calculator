@@ -1,5 +1,6 @@
 import tkinter as tk
 import basic_operations as bo
+import advanced_operations as ao
 
 root = tk.Tk()
 root.title("My First Tkinter App")
@@ -68,11 +69,21 @@ def click_sqr_root():
     root.setvar("operation", "√")
 
 
+def click_clear():
+    print("Memory Cleared!")
+    root.setvar("first_press", "")
+    root.setvar("second_press", "")
+    root.setvar("operation", "")
+    display.config(text="")
+
+
 def click_eql():
     x1 = root.getvar("first_press")
     x2 = root.getvar("second_press")
     print(x1, x2)
     val = "Error"
+    if x1 == "" or x2 == "":
+        val = "Select operands"
     if root.getvar("operation") == "+":
         val = bo.add(x1, x2)
     elif root.getvar("operation") == "-":
@@ -82,11 +93,14 @@ def click_eql():
     elif root.getvar("operation") == "/":
         val = bo.divide(x1, x2)
     elif root.getvar("operation") == "^2":
-        val = bo.square(x1)
+        val = ao.square(x1)
     elif root.getvar("operation") == "√":
-        val = bo.square_root(x1)
+        val = ao.square_root(x1)
+    else:
+        val = "Select operation"
     x1 = root.setvar("first_press", 0)
     x2 = root.setvar("second_press", 0)
+    display.config(text=str(val))
 
 
 display = tk.Label(root, text="Click a number to start mathing")
@@ -127,4 +141,7 @@ sqr_btn.grid(row=3, column=3, padx=5, pady=5)
 
 sqr_root_btn = tk.Button(root, text="√", command=click_sqr_root, width=10, height=3)
 sqr_root_btn.grid(row=3, column=4, padx=5, pady=5)
+
+clear_btn = tk.Button(root, text="C", command=click_clear, width=8, height=3)
+clear_btn.grid(row=3, column=2, padx=5, pady=5)
 root.mainloop()
