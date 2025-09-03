@@ -2,6 +2,7 @@ import tkinter as tk
 import basic_operations as bo
 import advanced_operations as ao
 import quinary_logic as ql
+import calc_style as cs
 
 root = tk.Tk()
 root.title("My First Tkinter App")
@@ -215,5 +216,24 @@ clear_btn.grid(row=3, column=2, padx=5, pady=5)
 
 toggle_btn = tk.Button(root, text="Toggle", command=click_toggle, width=8, height=3)
 toggle_btn.grid(row=3, column=1, padx=5, pady=5)
+
+buttons = [
+    btn0,
+    btn1,
+    btn2,
+    btn3,
+    btn4,
+    add_btn,
+    sub_btn,
+    div_btn,
+    mul_btn,
+    eql_btn,
+    sqr_btn,
+    sqr_root_btn,
+    clear_btn,
+    toggle_btn,
+]
+
+cs.apply_theme(root, display, buttons)
 
 root.mainloop()
