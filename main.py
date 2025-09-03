@@ -71,7 +71,6 @@ def click_sqr_root():
 def click_eql():
     x1 = root.getvar("first_press")
     x2 = root.getvar("second_press")
-    x1, x2 = str(x1), str(x2)
     print(x1, x2)
     val = "Error"
     if root.getvar("operation") == "+":
