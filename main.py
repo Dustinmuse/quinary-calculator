@@ -7,8 +7,8 @@ root = tk.Tk()
 root.title("My First Tkinter App")
 root.setvar("first_press", "")
 root.setvar("second_press", "")
-root.setvar("quinaryDisplay", True)  # Initialize to False (decimal mode)
-root.setvar("solution", "0")  # Initialize solution
+root.setvar("quinaryDisplay", True)  # Initialize to True (quinary mode by default)
+root.setvar("solution", "0")  # Store the actual quinary solution
 ql = ql.QuinaryCalculator()
 
 
@@ -91,53 +91,84 @@ def click_clear():
     root.setvar("first_press", "")
     root.setvar("second_press", "")
     root.setvar("operation", "")
+    root.setvar("solution", "0")
+    root.setvar("quinaryDisplay", True)
     display.config(text="")
 
 
 def click_eql():
-    x1 = root.getvar("first_press")
-    x2 = root.getvar("second_press")
+    x1_raw = root.getvar("first_press")
+    x2_raw = root.getvar("second_press")
+    op = root.getvar("operation")
+
+    # Normalize empties
+    x1 = None if x1_raw in (None, "") else int(x1_raw)
+    x2 = None if x2_raw in (None, "") else int(x2_raw)
+
     val = "Error"
-    if x1 == None or x2 == None:
-        val = "Select operands"
-    elif root.getvar("operation") == "+":
-        val = bo.add(x1, x2)
-    elif root.getvar("operation") == "-":
-        val = bo.subtract(x1, x2)
-    elif root.getvar("operation") == "*":
-        val = bo.multiply(x1, x2)
-    elif root.getvar("operation") == "/":
-        val = bo.divide(x1, x2)
-    elif root.getvar("operation") == "^2":
-        val = ao.square(x1)
-    elif root.getvar("operation") == "√":
-        val = ao.square_root(x1)
-    else:
+    if op in (None, ""):
         val = "Select operation"
+    elif op in ("^2", "√"):
+        if x1 is None:
+            val = "Select operands"
+        elif op == "^2":
+            val = ao.square(x1)
+        else:
+            val = ao.square_root(x1)
+    else:
+        if x1 is None or x2 is None:
+            val = "Select operands"
+        elif op == "+":
+            val = bo.add(x1, x2)
+        elif op == "-":
+            val = bo.subtract(x1, x2)
+        elif op == "*":
+            val = bo.multiply(x1, x2)
+        elif op == "/":
+            val = bo.divide(x1, x2)
+        else:
+            val = "Select operation"
     # Clear the variables for next calculation
     root.setvar("first_press", "")
     root.setvar("second_press", "")
     root.setvar("operation", "")
-    # Store the solution and display it
+    # Store the solution as quinary (operations already return quinary)
     root.setvar("solution", val)
-    display.config(text=str(val))
+
+    # Display the result according to current mode
+    if root.getvar("quinaryDisplay") == True:
+        # Quinary mode: show quinary directly
+        display.config(text=str(val))
+    else:
+        # Decimal mode: convert quinary to decimal for display
+        if val not in ["Error", "Select operands", "Select operation"]:
+            display.config(text=str(ql.quinary_to_decimal(int(val))))
+        else:
+            display.config(text=str(val))
 
 
 def click_toggle():
-    current_solution = root.getvar("solution")
+    # Get the stored solution (which is in quinary format)
+    quinary_solution = root.getvar("solution")
+    if quinary_solution is None or quinary_solution == "":
+        quinary_solution = "0"
 
     if root.getvar("quinaryDisplay") == True:
         # Currently in quinary mode, switch to decimal
         root.setvar("quinaryDisplay", False)
         print("Switched to Decimal")
-        decimal_value = ql.quinary_to_decimal(current_solution)
-        display.config(text="Decimal Mode: " + str(decimal_value))
+        # Convert quinary to decimal for display
+        if quinary_solution not in ["Error", "Select operands", "Select operation"]:
+            decimal_value = ql.quinary_to_decimal(int(quinary_solution))
+            display.config(text=str(decimal_value))
+        else:
+            display.config(text=str(quinary_solution))
     else:
         # Currently in decimal mode, switch to quinary
         root.setvar("quinaryDisplay", True)
         print("Switched to Quinary")
-        quinary_value = ql.decimal_to_quinary((current_solution))
-        display.config(text="Quinary Mode: " + str(quinary_value))
+        # Display the stored quinary value directly
+        display.config(text=str(quinary_solution))
 
 
 display = tk.Label(root, text="Click a number to start mathing")
