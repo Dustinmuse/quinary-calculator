@@ -3,28 +3,28 @@ from quinary_logic import QuinaryCalculator
 # Create one calculator instance to reuse
 calc = QuinaryCalculator()
 
-def add(a, b) -> str:
+def add(a, b) -> int:
     """
     Add two quinary numbers
     :return: The product of a and b in quinary as a string
     """
     return calc.decimal_to_quinary(calc.quinary_to_decimal(a) + calc.quinary_to_decimal(b))
 
-def subtract(a, b) -> str:
+def subtract(a, b) -> int:
     """
     Subtract two quinary numbers
     :return: The product of a and b in quinary as a string
     """
     return calc.decimal_to_quinary(calc.quinary_to_decimal(a) - calc.quinary_to_decimal(b))
 
-def multiply(a, b) -> str:
+def multiply(a, b) -> int:
     """
     Multiply two quinary numbers
     :return: The product of a and b in quinary as a string
     """
     return calc.decimal_to_quinary(calc.quinary_to_decimal(a) * calc.quinary_to_decimal(b))
 
-def divide(a, b) -> str:
+def divide(a, b) -> int:
     """
     Divide two quinary numbers (integer division)
     :return: The product of a and b in quinary as a string
