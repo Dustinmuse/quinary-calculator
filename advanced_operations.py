@@ -4,13 +4,13 @@ import math
 # Create one calculator instance to reuse
 calc = QuinaryCalculator()
 
-def square(a: str) -> str:
+def square(a: int) -> int:
     """
     :return: The squared result of the inputed number
     """
     return calc.decimal_to_quinary((calc.quinary_to_decimal(a)**2))
 
-def square_root(a: str) -> str:
+def square_root(a: int) -> int:
     """
     :return: The square root of the inputed number
     """
