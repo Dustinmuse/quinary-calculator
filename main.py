@@ -1,11 +1,15 @@
 import tkinter as tk
 import basic_operations as bo
 import advanced_operations as ao
+import quinary_logic as ql
 
 root = tk.Tk()
 root.title("My First Tkinter App")
 root.setvar("first_press", "")
 root.setvar("second_press", "")
+root.setvar("quinaryDisplay", True)  # Initialize to False (decimal mode)
+root.setvar("solution", "0")  # Initialize solution
+ql = ql.QuinaryCalculator()
 
 
 def number_clicked(x):
@@ -13,9 +17,16 @@ def number_clicked(x):
     print(root.getvar("first_press"))
     if root.getvar("first_press") == "":
         root.setvar("first_press", x)
+        display.config(text=str(x))
     else:
         root.setvar("second_press", x)
-    display.config(text=str(x))
+        display.config(
+            text=str(root.getvar("first_press"))
+            + " "
+            + str(root.getvar("operation"))
+            + " "
+            + str(x)
+        )
 
 
 # One handler per button (manual wiring)
@@ -42,30 +53,36 @@ def click4():
 def click_add():
     print("Add operation selected!")
     root.setvar("operation", "+")
+    display.config(text=str(root.getvar("first_press")) + " + ")
 
 
 def click_sub():
     print("Subtract operation selected!")
     root.setvar("operation", "-")
+    display.config(text=str(root.getvar("first_press")) + " - ")
 
 
 def click_div():
     print("Divide operation selected!")
     root.setvar("operation", "/")
+    display.config(text=str(root.getvar("first_press")) + " / ")
 
 
 def click_mul():
     print("Multiply operation selected!")
     root.setvar("operation", "*")
+    display.config(text=str(root.getvar("first_press")) + " * ")
 
 
 def click_sqr():
     print("Square operation selected!")
     root.setvar("operation", "^2")
+    display.config(text=str(root.getvar("first_press")) + "^2")
 
 
 def click_sqr_root():
     print("Square root operation selected!")
+    display.config(text=str(root.getvar("first_press")) + "√")
     root.setvar("operation", "√")
 
 
@@ -80,11 +97,10 @@ def click_clear():
 def click_eql():
     x1 = root.getvar("first_press")
     x2 = root.getvar("second_press")
-    print(x1, x2)
     val = "Error"
-    if x1 == "" or x2 == "":
+    if x1 == None or x2 == None:
         val = "Select operands"
-    if root.getvar("operation") == "+":
+    elif root.getvar("operation") == "+":
         val = bo.add(x1, x2)
     elif root.getvar("operation") == "-":
         val = bo.subtract(x1, x2)
@@ -98,9 +114,30 @@ def click_eql():
         val = ao.square_root(x1)
     else:
         val = "Select operation"
-    x1 = root.setvar("first_press", 0)
-    x2 = root.setvar("second_press", 0)
+    # Clear the variables for next calculation
+    root.setvar("first_press", "")
+    root.setvar("second_press", "")
+    root.setvar("operation", "")
+    # Store the solution and display it
+    root.setvar("solution", val)
     display.config(text=str(val))
+
+
+def click_toggle():
+    current_solution = root.getvar("solution")
+
+    if root.getvar("quinaryDisplay") == True:
+        # Currently in quinary mode, switch to decimal
+        root.setvar("quinaryDisplay", False)
+        print("Switched to Decimal")
+        decimal_value = ql.quinary_to_decimal(current_solution)
+        display.config(text="Decimal Mode: " + str(decimal_value))
+    else:
+        # Currently in decimal mode, switch to quinary
+        root.setvar("quinaryDisplay", True)
+        print("Switched to Quinary")
+        quinary_value = ql.decimal_to_quinary((current_solution))
+        display.config(text="Quinary Mode: " + str(quinary_value))
 
 
 display = tk.Label(root, text="Click a number to start mathing")
@@ -144,4 +181,8 @@ sqr_root_btn.grid(row=3, column=4, padx=5, pady=5)
 
 clear_btn = tk.Button(root, text="C", command=click_clear, width=8, height=3)
 clear_btn.grid(row=3, column=2, padx=5, pady=5)
+
+toggle_btn = tk.Button(root, text="Toggle", command=click_toggle, width=8, height=3)
+toggle_btn.grid(row=3, column=1, padx=5, pady=5)
+
 root.mainloop()
