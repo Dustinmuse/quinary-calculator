@@ -179,43 +179,43 @@ btn0 = tk.Button(root, text="0", command=click0, width=10, height=3)
 btn0.grid(row=1, column=0, padx=5, pady=5)
 
 btn1 = tk.Button(root, text="1", command=click1, width=10, height=3)
-btn1.grid(row=1, column=1, padx=5, pady=5)
+btn1.grid(row=2, column=0, padx=5, pady=5)
 
 btn2 = tk.Button(root, text="2", command=click2, width=10, height=3)
-btn2.grid(row=2, column=0, padx=5, pady=5)
+btn2.grid(row=3, column=0, padx=5, pady=5)
 
 btn3 = tk.Button(root, text="3", command=click3, width=10, height=3)
-btn3.grid(row=2, column=1, padx=5, pady=5)
+btn3.grid(row=4, column=0, padx=5, pady=5)
 
 btn4 = tk.Button(root, text="4", command=click4, width=10, height=3)
-btn4.grid(row=3, column=0, padx=5, pady=5)
+btn4.grid(row=5, column=0, padx=5, pady=5)
 
 add_btn = tk.Button(root, text="+", command=click_add, width=10, height=3)
-add_btn.grid(row=1, column=3, padx=5, pady=5)
+add_btn.grid(row=2, column=1, padx=5, pady=5)
 
 sub_btn = tk.Button(root, text="-", command=click_sub, width=10, height=3)
-sub_btn.grid(row=1, column=4, padx=5, pady=5)
+sub_btn.grid(row=2, column=2, padx=5, pady=5)
 
 div_btn = tk.Button(root, text="/", command=click_div, width=10, height=3)
-div_btn.grid(row=2, column=3, padx=5, pady=5)
+div_btn.grid(row=3, column=1, padx=5, pady=5)
 
 mul_btn = tk.Button(root, text="*", command=click_mul, width=10, height=3)
-mul_btn.grid(row=2, column=4, padx=5, pady=5)
+mul_btn.grid(row=3, column=2, padx=5, pady=5)
 
 eql_btn = tk.Button(root, text="=", command=click_eql, width=10, height=3)
-eql_btn.grid(row=2, column=3, padx=5, pady=5)
+eql_btn.grid(row=5, column=1, columnspan=2, padx=5, pady=5, sticky="we")
 
 sqr_btn = tk.Button(root, text="^2", command=click_sqr, width=10, height=3)
-sqr_btn.grid(row=3, column=3, padx=5, pady=5)
+sqr_btn.grid(row=4, column=1, padx=5, pady=5)
 
 sqr_root_btn = tk.Button(root, text="√", command=click_sqr_root, width=10, height=3)
-sqr_root_btn.grid(row=3, column=4, padx=5, pady=5)
+sqr_root_btn.grid(row=4, column=2, padx=5, pady=5)
 
-clear_btn = tk.Button(root, text="C", command=click_clear, width=8, height=3)
-clear_btn.grid(row=3, column=2, padx=5, pady=5)
+clear_btn = tk.Button(root, text="C", command=click_clear, width=10, height=3)
+clear_btn.grid(row=1, column=2, padx=5, pady=5)
 
-toggle_btn = tk.Button(root, text="Toggle", command=click_toggle, width=8, height=3)
-toggle_btn.grid(row=3, column=1, padx=5, pady=5)
+toggle_btn = tk.Button(root, text="Toggle", command=click_toggle, width=10, height=3)
+toggle_btn.grid(row=1, column=1, padx=5, pady=5)
 
 buttons = [
     btn0,
