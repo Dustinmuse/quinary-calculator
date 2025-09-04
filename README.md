@@ -3,19 +3,19 @@
 # Manual
 **How to run**
 1. Click the play button in the top right while in the main file
-![How_to_run.PNG](Assets%2FHow_to_run.PNG)
-![After_running.PNG](Assets%2FAfter_running.PNG)
+![How_to_run.PNG](assets%2FHow_to_run.PNG)
+![After_running.PNG](assets%2FAfter_running.PNG)
 
 **Addition**
 1. Click the first number you want to add
-![Step_1.PNG](Assets%2FStep_1.PNG)
+![Step_1.PNG](assets%2FStep_1.PNG)
 2. Click the plus sign
-![Step_2.PNG](Assets%2FStep_2.PNG)
+![Step_2.PNG](assets%2FStep_2.PNG)
 3. Click the second number you want to add
-![Step_3.PNG](Assets%2FStep_3.PNG)
+![Step_3.PNG](assets%2FStep_3.PNG)
 4. Click the equals sign for results
-![Step_4.PNG](Assets%2FStep_4.PNG)
-![Step_5.PNG](Assets%2FStep_5.PNG)
+![Step_4.PNG](assets%2FStep_4.PNG)
+![Step_5.PNG](assets%2FStep_5.PNG)
 
 **Subtraction**
 1. Click the first number to subtract from
